@@ -76,7 +76,7 @@ public class FileController {
         String fileName = file.getSubmittedFileName();
         File dest = new File(fileName);
         try {
-            file.write("f:/mvc/uploads/" + fileName);
+            file.write("e:/mvc/uploads/" + fileName);
             mav.addObject("success", true);
             mav.addObject("msg", "上傳文件成功");
         } catch (IllegalStateException | IOException e) {

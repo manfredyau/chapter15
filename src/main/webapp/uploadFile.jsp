@@ -11,7 +11,7 @@
     <title>文件上傳</title>
 </head>
 <body>
-<form action="./file/uploadMultipartFile.do" enctype="multipart/form-data">
+<form method="post" action="./file/uploadPart.do" enctype="multipart/form-data">
     <input type="file" name="file" value="請選擇上傳的文件"/>
     <input type="submit" value="提交">
 </form>
