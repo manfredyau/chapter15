@@ -63,7 +63,7 @@
               })
           })*/
 
-        $(document).ready(function () {
+       /* $(document).ready(function () {
             $("#commit").click(function () {
                 var str = $("form").serialize();
                 $.post({
@@ -75,11 +75,11 @@
                     }
                 })
             })
-        })
+        })*/
     </script>
 </head>
 <body>
-<form id="form">
+<form id="form" action="./params/commonParamPojo.do">
     <table>
         <tr>
             <td>角色名稱</td>
