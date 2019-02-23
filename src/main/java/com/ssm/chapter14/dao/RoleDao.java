@@ -17,4 +17,7 @@ public interface RoleDao {
 	public List<Role> findRoles(RoleParams roleParams);
 	
 	public int deleteRole(Long id);
+
+    int update(Role role);
+
 }

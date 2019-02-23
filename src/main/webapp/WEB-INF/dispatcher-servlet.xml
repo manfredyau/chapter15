@@ -8,7 +8,7 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 使用注解驱动 -->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
     <!-- 定义扫描装载的包 -->
     <context:component-scan base-package="com.*"/>
     <!-- 定义视图解析器 -->
@@ -18,6 +18,15 @@
           p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
     <!-- 如果有配置数据库事务,需要开启注解事务的，需要开启这段代码 -->
     <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!-- 轉換器bean -->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.ssm.chapter14.converter.StringToRoleConverter"/>
+            </list>
+        </property>
+    </bean>
 <!--
     <mvc:interceptors>
         <mvc:interceptor>

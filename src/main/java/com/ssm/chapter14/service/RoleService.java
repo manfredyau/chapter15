@@ -16,4 +16,8 @@ public interface RoleService {
     int insertRole(Role role);
 
     int deleteRoles(List<Long> idList);
+
+    int updateRole(Role role);
+
+    int updateRoleArr(List<Role> roleList);
 }

@@ -14,12 +14,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
 import com.ssm.chapter14.pojo.Role;
 import com.ssm.chapter14.service.RoleService;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -96,6 +98,37 @@ public class RoleController {
         mav.addObject("roleList", roleList);
         mav.setView(excelView);
         return mav;
+    }
+
+
+    /*-----------------------------------------   16-4   --------------------------------------------------*/
+    @RequestMapping(value = "/getRoleToJson")
+    @ResponseBody
+    public Role getRoleToJson(Long id) {
+        return roleService.getRole(id);
+    }
+
+
+    /*------------------------------------------   16-9  -----------------------------------------------------*/
+    @RequestMapping("/updateRole")
+    @ResponseBody
+    public Map<String, Object> updateRole(Role role) {
+        Map<String, Object> result = new HashMap<>();
+
+        boolean updateFlag = (roleService.updateRole(role) == 1);
+        result.put("success", updateFlag);
+        result.put("msg", updateFlag ? "更新成功" : "更新失敗");
+        return result;
+    }
+
+    @RequestMapping("/updateRoleList")
+    @ResponseBody
+    public Map<String, Object> updateRoleList(List<Role> roleList) {
+        Map<String, Object> result = new HashMap<>();
+        boolean updateFlag = (roleService.updateRoleArr(roleList) > 1);
+        result.put("success", updateFlag);
+        result.put("msg", updateFlag ? "更新成功" : "更新失敗");
+        return result;
     }
 
     @SuppressWarnings({"unchecked"})

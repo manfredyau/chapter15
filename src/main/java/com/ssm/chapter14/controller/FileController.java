@@ -51,7 +51,6 @@ public class FileController {
 
         // 獲取原始文件名
         String fileName = file.getOriginalFilename();
-        file.getContentType();
 
         // 目標文件
         File dest = new File(fileName);
@@ -70,11 +69,11 @@ public class FileController {
 
     @RequestMapping("/uploadPart")
     public ModelAndView uploadPart(Part file) {
+        System.err.println(file.getClass());
         ModelAndView mav = new ModelAndView();
         mav.setView(new MappingJackson2JsonView());
 
         String fileName = file.getSubmittedFileName();
-        File dest = new File(fileName);
         try {
             file.write("e:/mvc/uploads/" + fileName);
             mav.addObject("success", true);

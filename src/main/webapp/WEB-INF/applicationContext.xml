@@ -39,4 +39,33 @@
         <property name="SqlSessionFactory" ref="SqlSessionFactory"/>
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
     </bean>
+
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonConverter"/>
+            </list>
+        </property>
+    </bean>
+
+
+    <bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>application/json;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+
+   <!-- <mvc:annotation-driven conversion-service="conversionService"/>
+
+    &lt;!&ndash; 轉換器bean &ndash;&gt;
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.ssm.chapter14.converter.StringToRoleConverter"/>
+            </list>
+        </property>
+    </bean>-->
 </beans>

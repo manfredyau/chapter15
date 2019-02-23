@@ -1,7 +1,6 @@
 package com.ssm.chapter14.service.impl;
 
 import com.ssm.chapter14.dao.RoleDao;
-import com.ssm.chapter14.mapper.RoleMapper;
 import com.ssm.chapter14.pojo.RoleParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,6 @@ import java.util.List;
 
 @Service
 public class RoleServiceImpl implements RoleService {
-
-    @Autowired
-    private RoleMapper roleService = null;
 
     @Autowired
     private RoleDao roleDao;
@@ -54,6 +50,20 @@ public class RoleServiceImpl implements RoleService {
         int count = 0;
         for (long id : idList) {
             count += roleDao.deleteRole(id);
+        }
+        return count;
+    }
+
+    @Override
+    public int updateRole(Role role) {
+        return roleDao.update(role);
+    }
+
+    @Override
+    public int updateRoleArr(List<Role> roleList) {
+        int count = 0;
+        for (int i = 0; i < roleList.size(); i++) {
+            count += roleDao.update(roleList.get(i));
         }
         return count;
     }

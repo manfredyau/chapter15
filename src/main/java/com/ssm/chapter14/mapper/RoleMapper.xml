@@ -7,6 +7,14 @@
         insert into t_role (role_name, note) value (#{roleName}, #{note})
 
     </insert>
+    <update id="update" parameterType="com.ssm.chapter14.pojo.Role">
+        update t_role
+        <set>
+            <if test="roleName != null">role_name = #{roleName},</if>
+            <if test="note != null">note = #{note},</if>
+        </set>
+        where id = #{id}
+    </update>
     <delete id="deleteRole">
         delete
         from t_role
