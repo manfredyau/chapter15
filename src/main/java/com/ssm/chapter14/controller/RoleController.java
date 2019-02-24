@@ -105,7 +105,14 @@ public class RoleController {
     @RequestMapping(value = "/getRoleToJson")
     @ResponseBody
     public Role getRoleToJson(Long id) {
-        return roleService.getRole(id);
+        Role role = roleService.getRole(id);
+        if (role == null) {
+            Role emptyRole = new Role();
+            emptyRole.setId(-1L);
+            emptyRole.setRoleName("不存在此角色");
+            return emptyRole;
+        }
+        return role;
     }
 
 
@@ -123,7 +130,7 @@ public class RoleController {
 
     @RequestMapping("/updateRoleList")
     @ResponseBody
-    public Map<String, Object> updateRoleList(List<Role> roleList) {
+    public Map<String, Object> updateRoleList(Role[] roleList) {
         Map<String, Object> result = new HashMap<>();
         boolean updateFlag = (roleService.updateRoleArr(roleList) > 1);
         result.put("success", updateFlag);

@@ -19,5 +19,5 @@ public interface RoleService {
 
     int updateRole(Role role);
 
-    int updateRoleArr(List<Role> roleList);
+    int updateRoleArr(Role[] roles);
 }

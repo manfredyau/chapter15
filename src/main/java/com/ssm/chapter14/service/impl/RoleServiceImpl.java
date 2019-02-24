@@ -60,10 +60,10 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public int updateRoleArr(List<Role> roleList) {
+    public int updateRoleArr(Role[] roleList) {
         int count = 0;
-        for (int i = 0; i < roleList.size(); i++) {
-            count += roleDao.update(roleList.get(i));
+        for (int i = 0; i < roleList.length; i++) {
+            count += roleDao.update(roleList[i]);
         }
         return count;
     }
