@@ -40,7 +40,7 @@
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
     </bean>
 
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+  <!--  <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
                 <ref bean="jsonConverter"/>
@@ -56,12 +56,12 @@
             </list>
         </property>
     </bean>
+-->
 
+    <mvc:annotation-driven/>
 
-   <!-- <mvc:annotation-driven conversion-service="conversionService"/>
-
-    &lt;!&ndash; 轉換器bean &ndash;&gt;
-    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+    <!-- 轉換器bean -->
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <list>
                 <bean class="com.ssm.chapter14.converter.StringToRoleConverter"/>
