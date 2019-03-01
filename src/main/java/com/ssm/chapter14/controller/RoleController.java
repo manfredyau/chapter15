@@ -1,5 +1,6 @@
 package com.ssm.chapter14.controller;
 
+import com.ssm.chapter14.exception.RoleException;
 import com.ssm.chapter14.pojo.PageParams;
 import com.ssm.chapter14.pojo.RoleParams;
 import com.ssm.chapter14.view.ExcelExportService;
@@ -11,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
 
@@ -31,6 +29,14 @@ public class RoleController {
     // 注入角色服务类
     @Autowired
     private RoleService roleService = null;
+
+    @ModelAttribute("role")
+    public Role initRole(@RequestParam(value = "id", required = false) Long id) {
+        if (id == null) {
+            return null;
+        }
+        return roleService.getRole(id);
+    }
 
     @RequestMapping(value = "/getRole", method = RequestMethod.GET)
     public ModelAndView getRole(@RequestParam("id") Long id) {
@@ -138,6 +144,28 @@ public class RoleController {
         return result;
     }
 
+
+    /*----------------------------------------   16-21 ----------------------------------------------------*/
+    @RequestMapping("/getRoleFromModelAttribute")
+    @ResponseBody
+    public Role getRoleFromModelAttribute(@ModelAttribute("role") Role role) {
+        return role;
+    }
+
+
+    /*----------------------------------------    16-23  ---------------------------------------------------*/
+    @RequestMapping("/notFound")
+    @ResponseBody
+    public Role notFound(Long id) {
+        Role role = roleService.getRole(id);
+
+        //找不到角色信息抛出RoleException
+        if (role == null) {
+            throw new RoleException();
+        }
+        return role;
+    }
+
     @SuppressWarnings({"unchecked"})
     private ExcelExportService exportService() {
         return (model, workBook) -> {
@@ -158,4 +186,11 @@ public class RoleController {
             }
         };
     }
+
+
+  /*  @ExceptionHandler(RoleException.class)
+    public String HandleRoleException(RoleException e) {
+        e.printStackTrace();
+        return "exception";
+    }*/
 }

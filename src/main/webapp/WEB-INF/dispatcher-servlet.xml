@@ -27,7 +27,25 @@
             </list>
         </property>
     </bean>
-<!--
+
+    <!--只能取這個id-->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="basenames" value="classpath:msg"/>
+        <property name="cacheSeconds" value="5"/>
+    </bean>
+
+   <!-- <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="basenames" value="msg"/>
+    </bean>-->
+
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+        <property name="defaultLocale" value="en_US"/>
+    </bean>
+
+
+
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/role/*.do"/>
@@ -41,5 +59,12 @@
             <mvc:mapping path="/role/*.do"/>
             <bean class="com.ssm.chapter14.interceptor.RoleInterceptor3"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+
+        <mvc:interceptor>
+            <mvc:mapping path="/message/*.do"/>
+            <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+                <property name="paramName" value="language"/>
+            </bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

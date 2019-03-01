@@ -33,6 +33,9 @@
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
           <file>file://$MODULE_DIR$/WebContent/WEB-INF/applicationContext.xml</file>
         </fileset>
+        <fileset id="fileset3" name="ApplicationContext (2)" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/applicationContext.xml</file>
+        </fileset>
       </configuration>
     </facet>
   </component>
@@ -151,5 +154,14 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-coyote:8.0.53" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util:8.0.53" level="project" />
     <orderEntry type="library" name="Maven: org.apache.tomcat:tomcat-util-scan:8.0.53" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant:1.10.5" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.ant:ant-launcher:1.10.5" level="project" />
+    <orderEntry type="library" name="Maven: redis.clients:jedis:2.9.0" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-redis:2.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-keyvalue:2.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.data:spring-data-commons:2.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-oxm:5.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework:spring-context-support:5.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
   </component>
 </module>

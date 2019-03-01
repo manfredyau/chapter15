@@ -2,7 +2,10 @@ package com.ssm.chapter14.pojo;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
+	private static final long serialVersionUID = -4126322500808393404L;
 	private Long id;
 	private String roleName;
 	private String note;
